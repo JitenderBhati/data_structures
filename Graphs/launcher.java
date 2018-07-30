@@ -16,7 +16,8 @@ class launcher {
 
         // obj.traverse();
 
-        obj.bfs(node1, node5);
+        //obj.bfs(node1, node5);
+        obj.dfs(node1);
 
     }
 }
