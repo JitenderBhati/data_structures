@@ -1,7 +1,9 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.*;
 
 import org.w3c.dom.Node;
 
@@ -74,5 +76,53 @@ class graph
 
             System.out.println(obj.value+ "->"+ ar);
         }
+    }
+
+    public void bfs(node obj, node obj1)
+    {
+        ArrayDeque<node> queu = new ArrayDeque<>();
+        queu.add(obj);
+        obj.searched = true;
+        // System.out.println(first.value);
+        while(!queu.isEmpty())
+        {
+            node first = queu.remove();
+            //System.out.println(first.value);
+            if(first.value==obj1.value)
+            {
+                //System.out.println("Found " + obj1.value);
+                break;
+            }
+            // System.out.println(first.value);
+            LinkedList<node> adj = graph.get(first);
+            for(node fre:adj)
+            {
+                if(fre.searched==false)
+                {
+                    //System.out.println(fre.value);
+                    fre.parent = first;
+                    queu.add(fre);
+                    fre.searched = true;
+                }
+            }
+        }
+
+        ArrayList<node> ar = new ArrayList<>();
+        ar.add(obj1);
+        node next = obj1.parent;
+        while(next!=null)
+        {
+            ar.add(next);
+            next = next.parent;
+        }        
+        Collections.reverse(ar);
+        String s="";
+        for(node n:ar)
+        {
+            s=s+(n.value+"->");
+           // System.out.print(n.value);
+        }
+        System.out.println(s.substring(0,s.length()-2));        
+
     }
 }

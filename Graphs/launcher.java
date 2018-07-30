@@ -14,7 +14,9 @@ class launcher {
         obj.addEdge(node3, node4);
         obj.addEdge(node4, node5);
 
-        obj.traverse();
+        // obj.traverse();
+
+        obj.bfs(node1, node5);
 
     }
 }
